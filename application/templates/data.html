@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+    
+{% block content %}
+<div class="data-frame my-5">
+    <canvas id="myChart" width="100%" height="70%"></canvas>
+</div>
+<div class="text-center">
+    <a href="{{ url_for('main.gad') }}" class="btn btn-primary">Start today's questionarie</a>
+</div>
+<div class="container text-box mt-5 pt-5 pb-5">
+    <h4>
+        what is GAD-7? 
+    </h4>
+    <p>
+        The General Anxiety Disorder questionnaire to measure the severity of anxiety symptoms and monitor progress after a proper diagnosis is made.
+    </p>
+</div>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [
+                {% for label in labels %} '{{label}}' {{ "," if not loop.last }} {% endfor %}
+            ],
+            datasets: [{
+                label: 'GAD-7 Score',
+                data: {{ scores }},
+                backgroundColor: [
+                    'rgba(215, 178, 250, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(215, 178, 250, 1)'
+                ],
+                borderWidth: 3
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+{% endblock %}

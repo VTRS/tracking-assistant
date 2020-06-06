@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+    
+{% block content %}
+<div class="dxtr-txt mt-5">
+    <h3>{{ response.title }}</h3>
+</div>
+
+<div class="container text-box mt-5 pt-5 pb-5">
+    <p>
+        Remember that this is just a screening tool to track your anxiety symptoms. This is not a diagnostic and if you have any doubts or concerns, you can
+        contact your therapist. 
+    </p>
+</div>
+
+<div class="card_container my-5">  
+    <div class="contact-card text-center">
+        <div class="contact-card__header-image">
+          <div class="contact-card__avatar"></div>
+        </div>
+          <p class="contact-card__name">Callum Brown</p>
+        <ul class="card_list">
+          <li class="contact-card__link contact-card__link--email"><a title="Email Callum Brown" href="mailto:">&#128241 cabrown96@live.com</a></li>
+          <li class="contact-card__link contact-card__link--mobile"><a title="Call Callum Brown" href="tel:">&#128231 +1 123-456-7890</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="text-center">
+    <a href="{{ url_for('main.data') }}" class="btn btn-primary">Go to data visualization</a>
+</div>
+{% endblock %}
