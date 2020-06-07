@@ -17,7 +17,7 @@ def set_keys(collection, key):
     collection_list = collection.find({})
     
     for element in collection_list:
-        if bcrypt.hashpw(key.encode('utf-8'), element['secret']):
+        if bcrypt.hashpw(key.encode('utf-8'), element['secret']) == element['secret']:
             return element['public']
     return 0
 
@@ -43,6 +43,7 @@ def handle_login():
 @main.route("/data")
 def data():
     gad_data = mongo.db.gad_data
+    print (session['mh'])
     data = gad_data.find({'patient': session['mh']})
     labels = []
     scores = []
@@ -122,7 +123,7 @@ def register():
                 'secret': personal_data,
                 'public': personal_public,
                 'name': 'anon',
-                'therapist': 'Psich Claudia'
+                'therapist': 'information of the therapist'
             })
             session['personal'] = personal_public
             session['mh'] = mh_public
